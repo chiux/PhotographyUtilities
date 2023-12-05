@@ -20,8 +20,9 @@ for files in dir_list:
     img = PIL.Image.open(path+files)
     exif_data = img._getexif()
     focal_length = exif_data[37386]
+	focal_length = focal_length/10
     if focal_length not in FL:
-        FL[focal_length] = 0
+        FL[focal_length] = 1
     else:
         FL[focal_length] = FL[focal_length] + 1
 
@@ -35,7 +36,7 @@ fig = plt.figure(figsize = (10, 5))
 plt.bar(FLs, nums, color ='maroon', 
         width = 0.4)
  
-plt.xlabel("Focal Length")
+plt.xlabel("Focal Length(*10)")
 plt.ylabel("Num of photos")
 plt.title("Focal Length used")
 plt.show()
